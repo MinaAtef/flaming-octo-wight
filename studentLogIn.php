@@ -12,7 +12,7 @@
         <form action="" method="post">
 
             <h2>Student Log In</h2>
-
+            
             Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="student">
             </br></br>
 
