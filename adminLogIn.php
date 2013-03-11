@@ -1,9 +1,51 @@
 <?php
+session_start();
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+$link = mysqli_connect('localhost', 'root', '', 'evaluation');
+
+if (!$link) {
+    die('Connect Error (' . mysqli_connect_errno() . ') '
+            . mysqli_connect_error());
+}
+
+if (isset($_POST['admin']) && isset($_POST['pass'])) {
+    $adminName = $_POST['admin'];
+    $password = $_POST['pass'];
+
+
+    $result = mysqli_query($link, "select name,password from admin  where name =  '$adminName' and password='$password'");
+    $row = mysqli_fetch_assoc($result);
+    if ($row['name'] == $adminName && $row['password'] = $password) {
+
+        if (isset($_POST['remember'])) {
+            setcookie('adminCo', $_POST['admin'], time() + 60 * 2);
+            setcookie('PassCo', md5($_POST['pass']), time() + 60 * 2);
+        }
+
+        
+        if(isset($_POST['change']))
+        {
+            $_SESSION['adSession'] = $adminName;
+            header("Location: changeAdminPassword.php");
+            
+        }  else {
+            
+        
+        header("Location: selection.php");
+        }
+        $_SESSION['adSession'] = $adminName;
+        //$_SESSION['pass'] = $password;
+        
+        
+        
+    }
+}
+
+mysqli_close($link);
+
+if (isset($_COOKIE['adminCo']) && isset($_COOKIE['PassCo'])) {
+    header("Location: selection.php");
+}
 ?>
 
 <html>
