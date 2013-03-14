@@ -1,9 +1,11 @@
 <?php
+session_start();
+if (isset($_POST['submit'])) {
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    $_SESSION['comment1'] = $_POST['comment'];
+    $_SESSION['flag1'] = 1;
+    header("Location: courseEval.php");
+}
 ?>
 
 <html>

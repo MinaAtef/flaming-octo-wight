@@ -31,7 +31,7 @@ if (isset($_POST['admin']) && isset($_POST['pass'])) {
         }  else {
             
         
-        header("Location: selection.php");
+        header("Location: adminwin.php");
         }
         $_SESSION['adSession'] = $adminName;
         //$_SESSION['pass'] = $password;
@@ -44,8 +44,9 @@ if (isset($_POST['admin']) && isset($_POST['pass'])) {
 mysqli_close($link);
 
 if (isset($_COOKIE['adminCo']) && isset($_COOKIE['PassCo'])) {
-    header("Location: selection.php");
+    header("Location: adminwin.php");
 }
+
 ?>
 
 <html>

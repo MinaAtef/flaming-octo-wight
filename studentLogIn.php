@@ -1,5 +1,7 @@
 <?php
 session_start();
+//if(isset($_SESSION['stdId']))
+  //  header("Location: selection.php");
 $link = mysqli_connect('localhost', 'root', '', 'evaluation');
 
 if (!$link) {
@@ -12,8 +14,10 @@ if (isset($_POST['student']) && isset($_POST['pass'])) {
     $password = $_POST['pass'];
 
 
-    $result = mysqli_query($link, "select name,password from student  where name =  '$username' and password='$password'");
+    $result = mysqli_query($link, "select * from student  where name =  '$username' and password='$password'");
     $row = mysqli_fetch_assoc($result);
+    
+    
     if ($row['name'] == $username && $row['password'] = $password) {
 
         if (isset($_POST['remember'])) {
@@ -32,7 +36,8 @@ if (isset($_POST['student']) && isset($_POST['pass'])) {
         header("Location: selection.php");
         }
         
-        
+      
+     $_SESSION['stdId'] =$row['std_id'];
     }
 }
 

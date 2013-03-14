@@ -1,9 +1,12 @@
 <?php
+session_start();
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+if (isset($_POST['submit'])) {
+
+    $_SESSION['comment'] = $_POST['comment'];
+    $_SESSION['flag'] = 1;
+    header("Location: instructorEval.php");
+}
 ?>
 
 <html>
@@ -18,7 +21,7 @@
             </textarea>
 
             </br></br>
-            
+
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -28,9 +31,9 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            
+
             <input type="submit" name="submit" value="Submit">
-            
+
 
 
 
