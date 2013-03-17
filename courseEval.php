@@ -16,7 +16,9 @@ if (!$link) {
             . mysqli_connect_error());
 }
 
-
+$result0=  mysqli_query($link, "select * from course where course_id='$crsID' ");
+$row0=  mysqli_fetch_assoc($result0);
+echo "Evaluation for : ".$row0['name'];
 
 if (isset($_POST['group1']) && isset($_POST['group2']) && isset($_POST['group3']) && isset($_POST['group4']) && isset($_POST['group5'])) {
     $res1 = $_POST['group1'];

@@ -1,5 +1,6 @@
 <?php
 session_start();
+//<?php
 //if(isset($_SESSION['stdId']))
   //  header("Location: selection.php");
 $link = mysqli_connect('localhost', 'root', '', 'evaluation');
@@ -14,15 +15,15 @@ if (isset($_POST['student']) && isset($_POST['pass'])) {
     $password = $_POST['pass'];
 
 
-    $result = mysqli_query($link, "select * from student  where name =  '$username' and password='$password'");
+    $result = mysqli_query($link, "select s.* from student s join intake i on s.intake_id=i.intake_id and s.name = '$username' and s.password='$password' and i.current='1'");
     $row = mysqli_fetch_assoc($result);
-    
+    echo $row['name'];
     
     if ($row['name'] == $username && $row['password'] = $password) {
 
         if (isset($_POST['remember'])) {
-            setcookie('stuCo', $_POST['student'], time() + 60 * 2);
-            setcookie('pasCo', md5($_POST['pass']), time() + 60 * 2);
+            setcookie('stuCo', $_POST['student'], time() + 60 * 5);
+            setcookie('pasCo', md5($_POST['pass']), time() + 60 * 5);
         }
 
         if(isset($_POST['change']))
@@ -38,6 +39,7 @@ if (isset($_POST['student']) && isset($_POST['pass'])) {
         
       
      $_SESSION['stdId'] =$row['std_id'];
+     $_SESSION['trkId'] =$row['track_id'];
     }
 }
 

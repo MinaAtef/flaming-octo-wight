@@ -17,6 +17,10 @@ if (!$link) {
 }
 
 
+$result0=  mysqli_query($link, "select * from instructor where ins_id='$insID' ");
+$row0=  mysqli_fetch_assoc($result0);
+echo "Evaluation for : ".$row0['name'];
+
 
 if (isset($_POST['group1']) && isset($_POST['group2']) && isset($_POST['group3']) && isset($_POST['group4']) && isset($_POST['group5'])) {
     $res1 = $_POST['group1'];
