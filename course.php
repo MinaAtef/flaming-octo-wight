@@ -66,9 +66,24 @@ if(isset($_POST['Delete'])){
 
 
 <html>
-	<head>
-		<script type="text/javascript" src="jquery-1.8.0.js"></script>
-		<script type="text/javascript" src="jquer_course.js"></script>
+	<script type="text/javascript" src="jquery-1.8.0.js"></script>
+		<script type="text/javascript" src="jquer_inst.js"></script>
+		<script>
+			$(function(){
+				$("#name").on("change",function(){					
+                                        $.ajax({
+						url: "courseajax.php",
+						type: "POST",
+						data: {
+							name: $('#name').attr("value")
+						},
+						success: function(resp){
+                                                    $("#code").attr('value',resp);
+						}
+					});
+				});
+			});
+		</script>
 	</head>
    <body>
 <form action="course.php" method="post">
@@ -89,14 +104,14 @@ if(isset($_POST['Delete'])){
   ?>
     
     
-    Name: <select name="name">
+    Name: <select name="name" id="name">
         <?php       
         while($row = mysqli_fetch_assoc($result)){
 		echo " <option value ='{$row['course_id']}'>{$row['name']}</option>";
 	}
         ?>
            </select> <br><br>
-    Code: <input type="text" name="Code"><br><br> 
+    Code: <input type="text" name="Code" id="code" value=" <?php $query = "select * from course where status = '0'";$result = mysqli_query($link,$query);$row = mysqli_fetch_assoc($result);echo "{$row['code']}";?> "><br><br> 
  <input type="button" value="Add" name="Add"> &nbsp;&nbsp;
  <input type="button" value="Edit" name="Edit"> &nbsp;&nbsp;
  <input type="submit" value="Delete" name="Delete"><br><br>

@@ -116,7 +116,6 @@ if(isset($_POST['Delete'])){
 	}
    $query = "select ins_id , name from instructor where status = '0' ";
    $result = mysqli_query($link,$query);
-   
 ?>
 Name: <select  name ="name" id="name">
         <?php       

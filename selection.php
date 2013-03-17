@@ -14,6 +14,7 @@ on s.std_id=se.std_id
 and se.std_id='$stdId')");
 
 
+
 $options1 = "";
 while ($row = mysqli_fetch_assoc($result1)) {
     $options1 .= "<option value='{$row['course_id']}' >" . $row['name'] . "</option>";
@@ -33,6 +34,7 @@ if (isset($_POST['ins_eval']) && isset($_POST['crs'])) {
     if ($_POST['crs'] != 'noselection_c')
         header("Location: instructorEval.php");
 }
+
 
 if (isset($_POST['crs_eval']) && isset($_POST['ins'])) {
     header("Location: courseEval.php");
@@ -95,7 +97,7 @@ if (isset($_POST['crs_eval']) && isset($_POST['ins'])) {
             <input type="submit" value="Course Evaluation" name="crs_eval">  </button> 
 
         </form>
-
-
-    </body>
+        <br><br>
+        <b>Note : </b> <font color ="red">Please make Instructor Evaluation first</font>
+</body>
 </html>
